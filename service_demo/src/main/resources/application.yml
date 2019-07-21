@@ -2,9 +2,9 @@ server:
   port: 8888
 spring:
   profiles:
-    active: native
+    active: native # 启用自定义的配置管理
   cloud:
     config:
       server:
         native:
-          searchLocations: classpath:config/,classpath:config/licensingservice
+          searchLocations: classpath:config/,classpath:config/licensingservice # 配置的搜索路径
