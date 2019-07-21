@@ -1,10 +1,23 @@
 server:
   port: 8888
+
+
+# 使用 本地的文件配置系统
+#spring:
+#  profiles:
+#    active: native # 启用自定义的配置管理
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          searchLocations: classpath:config/,classpath:config/licensingservice # 配置的搜索路径
+
+
+# 使用 git 作为 配置管理服务
 spring:
-  profiles:
-    active: native
   cloud:
     config:
       server:
-        native:
-          searchLocations: classpath:config/,classpath:config/licensingservice
+        git:
+          uri: https://github.com/zzkskys/config-repo
+          searchPaths: licensingservice

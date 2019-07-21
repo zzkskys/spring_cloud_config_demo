@@ -1,6 +1,8 @@
 package cn.zzk.springcloud.client.demo;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,12 +13,15 @@ import java.util.List;
  * @author zzk
  */
 @RestController
+@RefreshScope
 @RequestMapping("/license")
-@AllArgsConstructor
 public class LicenseController {
 
-    private final LicenseRepo licenseRepo;
+    @Autowired
+    private LicenseRepo licenseRepo;
 
+    @Value("${example.property}")
+    private String description;
 
     @PostMapping
     public License saveLicense(@RequestBody License license) {
@@ -26,5 +31,10 @@ public class LicenseController {
     @GetMapping
     public List<License> findAll() {
         return licenseRepo.findAll();
+    }
+
+    @GetMapping("/show")
+    public String getDescription() {
+        return description;
     }
 }

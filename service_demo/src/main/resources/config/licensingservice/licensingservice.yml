@@ -7,3 +7,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+example:
+  property: "I AM IN THE DEFAULT"
