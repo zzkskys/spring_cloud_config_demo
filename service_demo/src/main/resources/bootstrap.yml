@@ -1,0 +1,8 @@
+encrypt:
+  key: test2
+spring:
+  cloud:
+    config:
+      server:
+        encrypt:
+          enabled: false

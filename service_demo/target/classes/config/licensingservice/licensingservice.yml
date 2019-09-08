@@ -2,11 +2,13 @@ spring:
   datasource:
     url: jdbc:postgresql://127.0.0.1:5432/demo
     username: postgres
-    password: postgres
+    #{cipher} 表示加密后的数据，解密需要密匙
+    password: "{cipher}3181ecb70877c75b2ff13221572ecbd4146a9a2e8cf46ff4750003eb817c9392"
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
 
 example:
-  property: "I AM IN THE DEFAULT"
+  property: "I AM IN THE DEFAULT 2"
+

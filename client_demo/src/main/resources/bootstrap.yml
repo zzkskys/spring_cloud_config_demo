@@ -6,8 +6,15 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
+
+# 若使 刷新属性@RefreshScope 其作用，则 actuator 的配置需要放在 bootstrap
+# POST 请求访问 /actuator/refresh 刷新属性
 management:
   endpoints:
     web:
       exposure:
         include: refresh,health
+
+#密匙必须在 bootstrap.yml 中配置，且解密的密匙必须与加密的密匙一致,因此解密的密匙不可丢失
+encrypt:
+  key: qunchuang9558
