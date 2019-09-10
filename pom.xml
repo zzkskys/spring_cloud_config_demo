@@ -11,6 +11,10 @@
     <modules>
         <module>service_demo</module>
         <module>client_demo</module>
+        <module>eurekasvr</module>
+        <module>eurekasvr_product</module>
+        <module>eurekasvr-customer</module>
+        <module>eurekasvr_customer</module>
     </modules>
 
     <parent>

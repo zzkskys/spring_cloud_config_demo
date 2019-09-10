@@ -1,0 +1,11 @@
+server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false # 不要使用 Eureka 服务进行注册,因为它本身是 Eureka 服务
+    fetch-registry: false # 不要在本地缓存注册表信息
+  #  server:
+  #    wait-time-in-ms-when-sync-empty: 5 #在服务器接收请求之前等待的初始化时间
+
+# 每次服务注册需要 30s 的时间才能显示在 Eureka 服务中，因为 Eureka 需要从服务接收3此连续心跳包 ping,每次心跳包 ping 间隔 10s ，然后才能使用这个服务

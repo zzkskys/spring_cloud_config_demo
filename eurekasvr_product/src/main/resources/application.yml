@@ -1,0 +1,9 @@
+eureka:
+  instance:
+    prefer-ip-address: true # 通过IP 注册服务，而不是服务器名称
+  client:
+    register-with-eureka: true # 向 Eureka 注册服务
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ # Eureka 服务的位置
+server:
+  port: 8760
