@@ -1,10 +1,12 @@
 package cn.zzk.eurekasvr.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -21,6 +23,9 @@ public class LicenseController {
 
     @Autowired
     private OrganizationFeignClient feignClient;
+
+    @Autowired
+    private LicenseService licenseService;
 
     @PutMapping("/by-rest")
     public License created(String phone, String organizationId) {
@@ -44,5 +49,15 @@ public class LicenseController {
     public License byFeign(String phone, String organizationId) {
         Organization organization = feignClient.getOrganization(organizationId);
         return new License(UUID.randomUUID().toString(), phone, organization.getId(), organization.getName());
+    }
+
+    @GetMapping("/by-organizationId")
+    public List<License> findByOrganizationId(String organizationId) {
+        return licenseService.findByOrganizationId(organizationId);
+    }
+
+    @GetMapping("/hello")
+    public String hello(){
+        return "hello world";
     }
 }

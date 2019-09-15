@@ -52,8 +52,11 @@ public class OrganizationClient {
     }
 
     public Organization getBySupportRibbon(String organizationId) {
-        return template.getForObject("http://organizationservice/organizations/{organizationId}", Organization.class, organizationId);
+        return template
+                .getForObject("http://organizationservice/organizations/{organizationId}"
+                        , Organization.class, organizationId);
     }
+
 
 }
 

@@ -15,6 +15,7 @@
         <module>eurekasvr_product</module>
         <module>eurekasvr-customer</module>
         <module>eurekasvr_customer</module>
+        <module>hystrix_organization_demo</module>
     </modules>
 
     <parent>
