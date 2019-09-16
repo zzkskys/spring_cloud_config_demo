@@ -39,12 +39,18 @@ public class LicenseService {
      */
     @HystrixCommand(
             commandProperties = {
-                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),//超时时间，默认1000ms
-                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value = "10"),//在Hystrix 跳闸之前，10s 内连续调用的数量
-                    @HystrixProperty(name="circuitBreaker.errorThresholdPercentage", value="75"),//在断路器跳闸之前必须达到的调用失败(由于超时、抛出异常或返回 500)的百分比
-                    @HystrixProperty(name="circuitBreaker.sleepWindowInMilliseconds", value="7000"),//断路器跳闸后，允许另一个调用通过以便查看服务是否恢复健康之前Hystrix 的休眠时间
-                    @HystrixProperty(name="metrics.rollingStats.timeInMilliseconds", value="15000"),//用于控制 Hystrix 来见识服务调用问题的窗口大小，默认 10000ms
-                    @HystrixProperty(name="metrics.rollingStats.numBuckets", value="5")},//控制在定义滚动窗口中收集统计信息的次数。在该示例中， Hystrix 将使用 15s 的窗口，并将统计收集到的长度为 3s 的5个桶中
+                    //超时时间，默认1000ms
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
+                    //在Hystrix 跳闸之前，10s 内连续调用的数量
+                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value = "10"),
+                    //在断路器跳闸之前必须达到的调用失败(由于超时、抛出异常或返回 500)的百分比
+                    @HystrixProperty(name="circuitBreaker.errorThresholdPercentage", value="75"),
+                    //断路器跳闸后，允许另一个调用通过以便查看服务是否恢复健康之前Hystrix 的休眠时间
+                    @HystrixProperty(name="circuitBreaker.sleepWindowInMilliseconds", value="7000"),
+                    //用于控制 Hystrix 来见识服务调用问题的窗口大小，默认 10000ms
+                    @HystrixProperty(name="metrics.rollingStats.timeInMilliseconds", value="15000"),
+                    //控制在定义滚动窗口中收集统计信息的次数。在该示例中， Hystrix 将使用 15s 的窗口，并将统计收集到的长度为 3s 的5个桶中
+                    @HystrixProperty(name="metrics.rollingStats.numBuckets", value="5")},
             fallbackMethod = "whenBuildFail",
             threadPoolKey = "findByOrgThreadPool",
             threadPoolProperties = {

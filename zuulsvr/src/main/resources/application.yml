@@ -1,0 +1,48 @@
+server:
+  port: 5555
+
+  #Setting logging levels
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.thoughtmechanix: DEBUG
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
+
+
+zuul:
+  host:
+    socket-timeout-millis: 5000
+    connect-timeout-millis: 5000
+    connection-request-timeout-millis: 5000
+  # 测试手动映射路由.
+  # 在使用自动路由映射时，Zuul 只基于 Eureka 服务 ID 来公开服务，如果服务的实例没有在运行，Zuul 将不会公开该服务的路由。然而,
+  #如果在没有使用 Eureka 注册服务实例的情况下，手动将路由映射到服务发现 ID，那么 Zuul 仍然会显示这条路由。如果尝试为不存在的服务
+  #调用路由， Zuul 将返回 500 错误
+  routes:
+    organizationservice: org/**
+
+
+#hystrix:
+#  metrics:
+#    polling-interval-ms: 5000
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 5000
+
+ribbon:
+  SocketTimeoutMillis: 5000
+  ReadTimeout: 5000

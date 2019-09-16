@@ -13,9 +13,8 @@
         <module>client_demo</module>
         <module>eurekasvr</module>
         <module>eurekasvr_product</module>
-        <module>eurekasvr-customer</module>
         <module>eurekasvr_customer</module>
-        <module>hystrix_organization_demo</module>
+        <module>zuulsvr</module>
     </modules>
 
     <parent>

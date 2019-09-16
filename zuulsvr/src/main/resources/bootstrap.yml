@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: zuulservice
+  profiles:
+    active:
+      default
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # 默认暴露
+  endpoint:
+    routes:
+      enabled: true

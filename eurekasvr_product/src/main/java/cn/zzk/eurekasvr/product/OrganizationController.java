@@ -26,7 +26,9 @@ public class OrganizationController {
     }
 
     @GetMapping("/{id}")
-    public Organization getOrganization(@PathVariable String id) {
+    public Organization getOrganization(@PathVariable String id) throws InterruptedException {
+        //睡眠 2s ,模拟网络超时
+        Thread.sleep(2000);
         return organizations
                 .stream()
                 .filter(it -> it.getId().equals(id))
