@@ -1,8 +1,15 @@
 package cn.zzk.zuulsvr;
 
+import cn.zzk.zuulsvr.utils.TokenInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 /**
  * 如何判断是否使用 @EnableZuulServer 注解？ 使用此注解将创建一个 Zuul 服务器，它不会加载任何 Zuul 反向代理过滤器，
@@ -17,5 +24,14 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 public class ZuulServerApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZuulServerApplication.class, args);
+    }
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        RestTemplate template = new RestTemplate();
+        List<ClientHttpRequestInterceptor> interceptors = template.getInterceptors();
+        interceptors.add(new TokenInterceptor());
+        return template;
     }
 }

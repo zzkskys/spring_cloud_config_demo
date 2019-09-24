@@ -21,18 +21,26 @@ eureka:
 
 
 zuul:
-  host:
-    socket-timeout-millis: 5000
-    connect-timeout-millis: 5000
-    connection-request-timeout-millis: 5000
   # 测试手动映射路由.
   # 在使用自动路由映射时，Zuul 只基于 Eureka 服务 ID 来公开服务，如果服务的实例没有在运行，Zuul 将不会公开该服务的路由。然而,
   #如果在没有使用 Eureka 注册服务实例的情况下，手动将路由映射到服务发现 ID，那么 Zuul 仍然会显示这条路由。如果尝试为不存在的服务
   #调用路由， Zuul 将返回 500 错误
   routes:
-    organizationservice: org/**
+    organizationservice: org/** #organizationservice 为向 Eureka 注册的服务名
+    # 静态URL 手动映射路由
+    # 可直接路由但是会绕过 Eureka，无法使用 Ribbon 负载均衡
+#    licensestatic:
+#      path: /licensestatic/**
+#      url: http://licenseservice-static:8081
 
+#  prefix: /api #路由的统一前缀
 
+#  host:
+#    socket-timeout-millis: 5000
+#    connect-timeout-millis: 5000
+#    connection-request-timeout-millis: 5000
+
+# zuul 中 hystrix 的超时设置
 #hystrix:
 #  metrics:
 #    polling-interval-ms: 5000
@@ -43,6 +51,9 @@ zuul:
 #          thread:
 #            timeoutInMilliseconds: 5000
 
+# zuul 中 ribbon 的超时设置
 ribbon:
   SocketTimeoutMillis: 5000
   ReadTimeout: 5000
+
+#对于超过 5s 的配置，必须同时设置 Hystrix 和 Ribbon 的超时

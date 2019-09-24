@@ -15,6 +15,7 @@
         <module>eurekasvr_product</module>
         <module>eurekasvr_customer</module>
         <module>zuulsvr</module>
+        <module>authentication</module>
     </modules>
 
     <parent>
@@ -45,6 +46,8 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+
     </dependencies>
 
     <build>
