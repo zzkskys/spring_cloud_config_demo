@@ -12,24 +12,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Create Time : 2019/09/24
- *
- * @author zzk
+ * 若使用 @EnableResourceServer 则表明该服务是 OAuth2 的验证服务。
+ * 并添加几个基于 REST 的端点用于 OAuth2 的验证和授权的过程。
  */
 @SpringBootApplication
 @RestController
 @EnableResourceServer
-@EnableAuthorizationServer // 该服务作为 OAuth2 服务
 public class AuthApplication {
     public static void main(String[] args) {
         SpringApplication.run(AuthApplication.class, args);
     }
 
     @GetMapping("/user")
-    public Map<String, Object> user(OAuth2Authentication user) {
-        Map<String, Object> userInfo = new HashMap<>();
-        userInfo.put("user", user.getUserAuthentication().getPrincipal());
-        userInfo.put("authorities", user.getAuthorities());
-        return userInfo;
+    public OAuth2Authentication user(OAuth2Authentication user) {
+        return user;
     }
 }

@@ -25,13 +25,4 @@ public class ZuulServerApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZuulServerApplication.class, args);
     }
-
-    @Bean
-    @LoadBalanced
-    public RestTemplate restTemplate() {
-        RestTemplate template = new RestTemplate();
-        List<ClientHttpRequestInterceptor> interceptors = template.getInterceptors();
-        interceptors.add(new TokenInterceptor());
-        return template;
-    }
 }

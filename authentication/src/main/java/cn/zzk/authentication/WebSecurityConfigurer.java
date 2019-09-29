@@ -10,11 +10,8 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * Create Time : 2019/09/24
- *
- * @author zzk
+ * 方便起见，在项目启动时设置用户
  */
-
 @Configuration
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Override

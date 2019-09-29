@@ -16,6 +16,8 @@
         <module>eurekasvr_customer</module>
         <module>zuulsvr</module>
         <module>authentication</module>
+        <module>secured_demo</module>
+        <module>secured_license_demo</module>
     </modules>
 
     <parent>

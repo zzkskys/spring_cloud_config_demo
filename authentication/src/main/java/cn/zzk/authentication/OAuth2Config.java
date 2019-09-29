@@ -23,7 +23,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     /**
-     * inMemory() 方法表示使用 内存存储
+     * inMemory() 方法表示使用 内存存储认证的凭证
      * withClient() 和 secrete() 提供了注册的应用程序名称 (eagleeye) 以及密匙(thissecret),密匙在 应用程序调用 OAuth2 服务器以接收 OAuth2 访问令牌时提供
      * authorizedGrantTypes() 表示授权类型列表
      * <p>
