@@ -45,7 +45,7 @@ public class LicenseApplication {
 
     @Bean
     @LoadBalanced
-    public RestTemplate clientCredentialsRestTemplate(OAuth2ClientContext context) {
+    public OAuth2RestTemplate clientCredentialsRestTemplate(OAuth2ClientContext context) {
         return new OAuth2RestTemplate(clientCredentialsResourceDetails(), context);
     }
 }

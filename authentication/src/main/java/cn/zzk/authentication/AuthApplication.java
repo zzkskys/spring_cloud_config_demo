@@ -18,6 +18,7 @@ import java.util.Map;
 @SpringBootApplication
 @RestController
 @EnableResourceServer
+@EnableAuthorizationServer // 该服务作为 OAuth2 服务
 public class AuthApplication {
     public static void main(String[] args) {
         SpringApplication.run(AuthApplication.class, args);
