@@ -11,13 +11,11 @@ security:
   oauth2:
     resource:
       userInfoUri: http://localhost:8901/auth/user
-      prefer-token-info: false
-#    client:
-#      access-token-uri: http://localhost:8901/auth/oauth/token
-#      scope: webclient
-#      grant-type: password
-#      client-secret: thisissecret
-#      client-id: eagleeye
-#      id: 1
+    client:
+      access-token-uri: http://localhost:8901/auth/oauth/token
+      scope: webclient
+      grant-type: password
+      client-secret: thisissecret
+      client-id: eagleeye
 server:
   port: 8995

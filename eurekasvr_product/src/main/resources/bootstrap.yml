@@ -1,5 +1,5 @@
 spring:
   application:
-    name: organizationservice # 将使用Eureka 注册的服务的逻辑名称
+    name: products # 将使用Eureka 注册的服务的逻辑名称
   profiles:
     active: default

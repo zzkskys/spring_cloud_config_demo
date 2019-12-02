@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.oauth2.client.OAuth2ClientContext;
+import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.security.oauth2.client.token.AccessTokenRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -24,13 +23,8 @@ public class OrganizationClient {
     @Autowired
     private OAuth2RestTemplate restTemplate;
 
-    @Autowired
-    private OAuth2ClientContext context;
 
-
-    public Organization getOrganization(String organizationId) {
-        AccessTokenRequest accessTokenRequest = context.getAccessTokenRequest();
-
+    public Organization getOrganization() {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         String key = "Authorization";
         String value = requestAttributes.getRequest().getHeader(key);
@@ -38,7 +32,6 @@ public class OrganizationClient {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.add(key, value);
-//        headers.addAll(accessTokenRequest);
         return restTemplate
                 .exchange("http://localhost:5555/securedservice/organizations/2",
                         HttpMethod.GET, new HttpEntity<>(headers),

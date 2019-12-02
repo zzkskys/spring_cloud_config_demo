@@ -1,10 +1,7 @@
 package cn.zzk.license;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,12 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/organizations")
 public class OrganizationController {
 
-    @Autowired
-    private OrganizationClient client;
+    private final OrganizationClient client;
+
+    public OrganizationController(OrganizationClient client) {
+        this.client = client;
+    }
 
     @GetMapping("/{id}")
     public Organization organization(@PathVariable String id) {
-        return client.getOrganization(id);
+        return client.getOrganization();
     }
     @GetMapping("/hello")
     public String hello(HttpServletRequest request) {
